@@ -38,7 +38,7 @@ def word_sort(f):
 
 class TestWordSort(unittest.TestCase):
     def test_word_sort(self):
-	f = './tomcat'
+	f = './testfile'
 	sort = word_sort(f)
 	test_sort = [(3, 'sc'), (2, 'tom'), (1, 'st')]
 	self.assertEqual(sort, test_sort)
