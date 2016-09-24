@@ -1,0 +1,4 @@
+Keeping your software up to date is the single biggest security precaution you can take for any operating system.
+
+Keeping your software up to date is the single biggest security precaution you can take for any operating system.
+Software updates range from critical vulnerability patches to minor bug fixes, and many software vulnerabilities are actually patched by the time they become public.
