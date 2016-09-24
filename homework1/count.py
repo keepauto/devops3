@@ -2,8 +2,6 @@
 #encoding: utf-8
 import unittest
 
-read_me = '''dasdxasdfasassdasaasdasda'''
-
 # 第一步:统计每个字符的个数并放在字典里面
 
 def str_count(mystr,total):
