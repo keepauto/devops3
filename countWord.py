@@ -30,7 +30,7 @@ def readflie():
         if word not in templist:
             templist.append(word)
             wordcount[word]=1
-        if word in templist:
+        else:
             wordcount[word]=wordcount[word]+1
 
     wordcount=sorted(wordcount.iteritems(), key=lambda d:d[1], reverse=True)
