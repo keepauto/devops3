@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import sys
 
 def read_file(filename):  
 	file_object = open(filename)
@@ -9,9 +10,8 @@ def read_file(filename):
 		 file_object.close( )
 
 def dealdate(txt):
-	date=txt.replace(',',' ').replace('.',' ')
-	
-	print len(date.split())
+	data = txt.replace(',',' ').replace('.',' ')
+	print len(data.split())
 
 
 
@@ -19,5 +19,6 @@ def dealdate(txt):
 
  
 if __name__ == '__main__':
+	file = sys.argv[1]
 	txt = read_file("dome.txt")
 	dealdate(txt)
