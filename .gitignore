@@ -89,4 +89,4 @@ ENV/
 .ropeproject
 
 #tool
-.idea
+.idea/
