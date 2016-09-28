@@ -2,45 +2,38 @@
 import pdb
 import sys
 import unittest
+import re
 
-keep=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ','-',"'"]  
-def normalize(chars):  
-    result=''  
-    for char in chars.lower():  
-        if char in keep:  
-            result += char  
-#    pdb.set_trace()
-    return result  
+def read_in_chunks(input_file,chunk_size):
+    with open(input_file,'r') as f:
+	while True:
+	    data = f.read(chunk_size)
+	    if data:
+	        match = re.findall(r'[^a-zA-Z0-9]+', data)
+	        for i in match:
+	      	    data = data.replace(i,' ')
+	    	    yield data
+	    else:
+	        break
 
-def make_dict(chars):  
-    words = normalize(chars).split()  
-#    pdb.set_trace()
+def make_dict(input_file,chunk_size):  
+    for words in read_in_chunks(input_file,chunk_size):
+        words = words.split()
     dict_word = {}  
     for word in words:  
         dict_word[word] = dict_word.get(word,0)+1
     return dict_word
 
-def word_sort(f):  
-    chars = open(f).read()  
-    dict_word = make_dict(chars)
-    list_word = [(dict_word[word],word) for word in dict_word]  
-#    pdb.set_trace()
-    list_word.sort()  
-    list_word.reverse()  
-    return list_word
-#    print('前10名出现次数最多的单词和次数是：')  
-#    i=1  
-#    for count,word in list_word[:10]:  
-#        print('%d.%4d %s'%(i,count,word))  
-#        i+=1  
-
-#word_sort(sys.argv[1])
+def word_sort(input_file,chunk_size):  
+    dict_word = make_dict(input_file,chunk_size)
+    return sorted(dict_word.items(), key=lambda x: x[1], reverse=True)
 
 class TestWordSort(unittest.TestCase):
     def test_word_sort(self):
-	f = './testfile'
-	sort = word_sort(f)
-	test_sort = [(3, 'sc'), (2, 'tom'), (1, 'st')]
+	input_file = './testfile'
+        chunk_size = 1024
+	sort = word_sort(input_file,chunk_size)
+	test_sort = [('sc', 3), ('Tom', 2), ('st', 1)]
 	self.assertEqual(sort, test_sort)
 
 if __name__ == "__main__":
