@@ -12,6 +12,7 @@ def read_in_chunks(input_file,chunk_size):
 	        match = re.findall(r'[^a-zA-Z0-9]+', data)
 	        for i in match:
 	      	    data = data.replace(i,' ')
+		    pdb.set_trace()
 	    	    yield data
 	    else:
 	        break
@@ -31,7 +32,7 @@ def word_sort(input_file,chunk_size):
 class TestWordSort(unittest.TestCase):
     def test_word_sort(self):
 	input_file = './testfile'
-        chunk_size = 1024
+        chunk_size = 1
 	sort = word_sort(input_file,chunk_size)
 	test_sort = [('sc', 3), ('Tom', 2), ('st', 1)]
 	self.assertEqual(sort, test_sort)
