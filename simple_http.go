@@ -21,7 +21,7 @@ func main() {
 }
 
 func fetchConn(listener net.Listener) chan net.Conn {
-	connChan := make(chan net.Conn)
+	connChan := make(chan net.Conn, 1000)
 	i := 0
 	go func() {
 		ACCEPT:
