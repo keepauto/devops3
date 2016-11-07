@@ -1,0 +1,45 @@
+- hosts: rbt
+  user: root
+  vars:
+    # created with:
+    # pip install passlib
+    # python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt(getpass.getpass())"
+    # 51Reboot.com
+    password: $6$rounds=656000$a8aa2ris0AxBxFMG$Gim5E8O0K6rnQaPf2bhwBR8ibGWldVa/WqKmWZu/z/PkZK8TG0BhbFcF4dWbAL4NgsYl5VIHl49qgvqtI3t4p0
+
+  tasks:
+    - name: Add user
+      user: name={{item}} password={{password}} groups=docker append=yes state=present createhome=yes
+      with_items:
+      - AnInputForce
+      - barryz
+      - kongsys
+      - "14720739"
+      - "357786221"
+      - auxten
+      - byakkozhang
+      - duxiaowei-jd
+      - EdogawaKudo
+      - futianshi1314
+      - iimianmian
+      - jianqiasd
+      - kongjc
+      - liu-jian
+      - liubaobao886
+      - liuyajing03
+      - liuyongzhan
+      - luojiyin1987
+      - markjing
+      - mingmings
+      - MissRoven
+      - OmegaEinstein
+      - pye1
+      - qianjunye
+      - rdczowh
+      - sdau405iverson
+      - seerjk
+      - siitao
+      - terry0219
+      - wuzedewuze
+      - ZhouMin
+      - zy14

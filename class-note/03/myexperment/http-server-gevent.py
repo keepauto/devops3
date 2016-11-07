@@ -1,0 +1,37 @@
+#!/usr/bin/env python
+
+import socket
+import os
+import time
+import signal
+import genent
+gevent.monkey.patch_all()
+
+"""
+GET /index.html HTTP/1.1
+Host: www.baidu.com
+"""
+resp = "HTTP/1.1 200 OK\r\nContent-Length:15\r\n\r\n<h1>auxten</h1>"
+
+signal.signal(signal.SIGCHLD,signal.SIG_IGN)
+
+listen_fd  = socket.socket(socket.AF_INET,socket.SOCK_STREAM,0)
+listen_fd.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+listen_fd.bind(("0.0.0.0", 2180))
+listen_fd.listen(10) #backlog
+#time.sleep(100)
+while True:
+    all_read = ""
+    conn, addr = listen_fd.accept()
+    pid = os.fork()
+    if pid != 0:
+        pass
+    else:
+        print conn,addr
+#    read_data = conn.recv(100)
+        while "\r\n\r\n" not in all_read:
+            read_data = conn.recv(1)
+            all_read += read_data
+        print all_read
+        conn.send(resp)
+        conn.close()
